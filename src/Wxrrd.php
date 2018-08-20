@@ -8,11 +8,11 @@ use Hanson\Foundation\Foundation;
 
 /**
  * Class Pospal
- * @package Hanson\Pospal
+ * @package Quanpan302\Wxrrd
  *
- * @property \Hanson\Pospal\Ticket\Ticket $ticket
- * @property \Hanson\Pospal\Customer\Customer $customer
- * @property \Hanson\Pospal\Product\Product $product
+ * @property \Quanpan302\Wxrrd\Ticket\Ticket $ticket
+ * @property \Quanpan302\Wxrrd\Customer\Customer $customer
+ * @property \Quanpan302\Wxrrd\Product\Product $product
  */
 class Pospal extends Foundation
 {
