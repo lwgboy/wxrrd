@@ -1,0 +1,19 @@
+{
+    "name": "quanpan302/wxrrd",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "QuanPan",
+            "email": "quanpan302@hotmail.com"
+        }
+    ],
+    "require": {
+        "hanson/foundation-sdk": "^2.0",
+        "nesbot/carbon": "^1.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuanPan\\Wxrrd\\": "src/"
+        }
+    }
+}
