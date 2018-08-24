@@ -4,7 +4,7 @@
 namespace Quanpan302\Wxrrd;
 
 
-use Hanson\Foundation\Foundation;
+use Quanpan302\Foundation\Foundation;
 
 /**
  * Class Pospal

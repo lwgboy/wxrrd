@@ -4,7 +4,7 @@
 namespace Quanpan302\Wxrrd;
 
 
-use Hanson\Foundation\AbstractAPI;
+use Quanpan302\Foundation\AbstractAPI;
 
 class Api extends AbstractAPI
 {
