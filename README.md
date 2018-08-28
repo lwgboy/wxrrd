@@ -4,7 +4,10 @@
 ## 安装
 
 ```
-composer require quanpan302/wxrrd:dev-master
+php composer.phar require quanpan302/wxrrd:dev-master
+
+rm -rf vendor/package
+php composer.phar install
 ```
 
 config.php有问题，似乎是之前的一次commit导致的 [link](https://github.com/Hanson/foundation-sdk/issues/2)
