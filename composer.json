@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "quanpan302/foundation-sdk": "^2.0",
+        "quanpan302/foundation-sdk": "dev-master",
         "nesbot/carbon": "^1.27"
     },
     "autoload": {
