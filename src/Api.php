@@ -46,11 +46,16 @@ class Api extends AbstractAPI
             "time-stamp: ".time(),
             "data-signature: ".strtoupper(md5($this->appKey.json_encode($params)))
         ]);
-        curl_setopt($curl, CURLOPT_URL, $this->url . $path);         // 要访问的地址
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检查
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));		// Post提交的数据包
-        curl_setopt($curl, CURLOPT_POST, 1);		// 发送一个常规的Post请求
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 获取的信息以文件流的形式返回
+        // 要访问的地址
+        curl_setopt($curl, CURLOPT_URL, $this->url . $path);
+        // 对认证证书来源的检查
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        // Post提交的数据包
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+        // 发送一个常规的Post请求
+        curl_setopt($curl, CURLOPT_POST, 1);
+        // 获取的信息以文件流的形式返回
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $output = curl_exec($curl);
 
