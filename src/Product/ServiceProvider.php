@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Quanpan302\Pospal\Product;
+namespace Quanpan302\Wxrrd\Product;
 
 
 use Pimple\Container;

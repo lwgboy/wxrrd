@@ -31,11 +31,12 @@ class Token extends Api
         // $params['redirect_uri'] = '';
         // options
         $params['refresh_token']= '';
-        $params['format']= '';
-        $params['state']= '';
+        $params['format']       = '';
+        $params['state']        = '';
         // sign
         // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
-
+        
+        // var_dump($params);
         return $this->request($requestMethod, self::QUERY_TOKEN_API, $params);
     }
 

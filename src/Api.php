@@ -34,6 +34,8 @@ class Api extends AbstractAPI
      */
     public function request($requestMethod, $path, $params = [])
     {
+        ksort($params);
+        
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -48,7 +50,7 @@ class Api extends AbstractAPI
         // Get
         if($requestMethod === "get") {
             // 要访问的地址
-            curl_setopt($curl, CURLOPT_URL, $this->url . $path .'?'.http_build_query(ksort($params)));
+            curl_setopt($curl, CURLOPT_URL, $this->url . $path .'?'.http_build_query($params));
             // 对认证证书来源的检查
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             // 获取的信息以文件流的形式返回
@@ -91,7 +93,7 @@ class Api extends AbstractAPI
      */
     private function checkAndThrow($result)
     {
-        if ($result['errCode']) {
+        if (array_key_exists('errCode', $result)) {
             throw new HttpException($result['errCode']);
         }
     }
