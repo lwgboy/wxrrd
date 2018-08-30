@@ -27,6 +27,13 @@ class Ticket extends Api
     public function query($sn)
     {
         $requestMethod = "get";
+
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
 
@@ -40,8 +47,15 @@ class Ticket extends Api
     public function paginate($params = [])
     {
         $requestMethod = "get";
-        $params['startTime'] = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
-        $params['endTime'] = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
+
+        // constants
+        $params['startTime']    = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
+        $params['endTime']      = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
 
         return $this->request($requestMethod, self::QUERY_TICKET_API, $params);
     }

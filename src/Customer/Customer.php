@@ -25,6 +25,12 @@ class Customer extends Api
     {
         $requestMethod = "get";
         
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_BY_NUMBER_API, ['customerNum' => $customerNum]);
     }
 
@@ -38,6 +44,12 @@ class Customer extends Api
     {
         $requestMethod = "get";
         
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_BY_UID_API, ['customerUid' => $uid]);
     }
 
@@ -51,6 +63,12 @@ class Customer extends Api
     {
         $requestMethod = "get";
         
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_CUSTOMER_PAGES_API, $params);
     }
 

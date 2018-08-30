@@ -4,7 +4,7 @@
 namespace Quanpan302\Wxrrd\Product;
 
 
-use Quanpan302\Pospal\Api;
+use Quanpan302\Wxrrd\Api;
 
 class Product extends Api
 {
@@ -23,6 +23,12 @@ class Product extends Api
     {
         $requestMethod = "get";
         
+        // passed from Controller init
+        // passed from Controller $params
+        // options
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_PRODUCT_PAGES_API, $params);
     }
 

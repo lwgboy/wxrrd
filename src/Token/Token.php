@@ -4,7 +4,7 @@
 namespace Quanpan302\Wxrrd\Token;
 
 
-use Quanpan302\Pospal\Api;
+use Quanpan302\Wxrrd\Api;
 
 class Token extends Api
 {
@@ -19,20 +19,23 @@ class Token extends Api
      */
     public function paginate($params = [])
     {
-        // appid:5755a21690a3cd0a
-        // secret:770195755a21690a3cd0a1e7ebac4064
-        // grant_type:authorization_code
-        // refresh_token:
-        // code:6fe3bfcbeab29793
-        // redirect_uri:http://www.ferraribabyhouse.com/wxrrd/
-        // format:
-        // state:
         $requestMethod = "get";
-        
-        $params = array(
-            'grant_type' => 'authorization_code',
-            'refresh_token' => '',
-        );
+
+        // constants
+        $params['grant_type']   = 'authorization_code';
+        // passed from Controller init
+        $params['appid']        = $this->appId;
+        $params['secret']       = $this->appKey;
+        // passed from Controller $params
+        // $params['code']         = '';
+        // $params['redirect_uri'] = '';
+        // options
+        $params['refresh_token']= '';
+        $params['format']= '';
+        $params['state']= '';
+        // sign
+        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+
         return $this->request($requestMethod, self::QUERY_TOKEN_API, $params);
     }
 

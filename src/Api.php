@@ -13,18 +13,15 @@ class Api extends AbstractAPI
 
     protected $appKey;
 
-    protected $signature;
+    protected $code;
 
     protected $url;
 
-    protected $urlRed;
-
-    public function __construct($appId, $appKey, $url, $urlRed)
+    public function __construct($appId, $appKey, $url)
     {
         $this->appId  = $appId;
         $this->appKey = $appKey;
         $this->url    = $url;
-        $this->urlRed = $urlRed;
     }
 
     /**
@@ -37,8 +34,6 @@ class Api extends AbstractAPI
      */
     public function request($requestMethod, $path, $params = [])
     {
-        $params['appId'] = $this->appId;
-
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -50,16 +45,28 @@ class Api extends AbstractAPI
         //     "data-signature: ".strtoupper(md5($this->appKey.json_encode($params)))
         // ]);
 
-        // 要访问的地址
-        curl_setopt($curl, CURLOPT_URL, $this->url . $path);
-        // 对认证证书来源的检查
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        // Post提交的数据包
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-        // 发送一个常规的Post请求
-        curl_setopt($curl, CURLOPT_POST, 1);
-        // 获取的信息以文件流的形式返回
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // Get
+        if($requestMethod === "get") {
+            // 要访问的地址
+            curl_setopt($curl, CURLOPT_URL, $this->url . $path .'?'.http_build_query(ksort($params)));
+            // 对认证证书来源的检查
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            // 获取的信息以文件流的形式返回
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        }
+        // Post
+        if($requestMethod === "post") {
+            // 要访问的地址
+            curl_setopt($curl, CURLOPT_URL, $this->url . $path);
+            // 对认证证书来源的检查
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            // Post提交的数据包
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+            // 发送一个常规的Post请求
+            curl_setopt($curl, CURLOPT_POST, 1);
+            // 获取的信息以文件流的形式返回
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        }
 
         $output = curl_exec($curl);
 
