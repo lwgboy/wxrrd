@@ -9,6 +9,8 @@ use Quanpan302\Wxrrd\Api;
 class Customer extends Api
 {
 
+    const QUERY_CUSTOMER_API = '/router/rest';
+    
     const QUERY_BY_NUMBER_API = '/pospal-api2/openapi/v1/customerOpenApi/queryByNumber';
     const QUERY_CUSTOMER_PAGES_API = '/pospal-api2/openapi/v1/customerOpenApi/queryCustomerPages';
     const QUERY_BY_UID_API = '/pospal-api2/openapi/v1/customerOpenApi/queryByUid';

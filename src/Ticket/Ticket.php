@@ -10,10 +10,12 @@ use Quanpan302\Wxrrd\Api;
 class Ticket extends Api
 {
 
+    const QUERY_TICKET_API = '/router/rest';
+    
     const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryAllPayMethod';
     const QUERY_TICKET_BY_SN_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn';
     const QUERY_TICKET_PAGES_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketPages';
-
+    
     /**
      * 查询支付方式代码
      *

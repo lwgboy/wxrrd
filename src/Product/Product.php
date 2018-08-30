@@ -9,6 +9,8 @@ use Quanpan302\Pospal\Api;
 class Product extends Api
 {
 
+    const QUERY_PRODUCT_API = '/router/rest';
+    
     const QUERY_PRODUCT_PAGES_API = '/pospal-api2/openapi/v1/productOpenApi/queryProductPages';
 
     /**

@@ -9,7 +9,7 @@ use Quanpan302\Pospal\Api;
 class Token extends Api
 {
 
-    const QUERY_TOKEN_API = '/pospal-api2/openapi/v1/productOpenApi/queryProductPages';
+    const QUERY_TOKEN_API = '/token';
 
     /**
      * 分页查询全部商品信息
