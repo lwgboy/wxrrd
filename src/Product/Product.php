@@ -27,7 +27,8 @@ class Product extends Api
         // passed from Controller $params
         // options
         // sign
-        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+        // ksort($params);
+        // $params['sign'] = strtoupper(md5(http_build_query($params)));
 
         return $this->request($requestMethod, self::QUERY_PRODUCT_PAGES_API, $params);
     }

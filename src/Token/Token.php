@@ -34,7 +34,8 @@ class Token extends Api
         $params['format']       = '';
         $params['state']        = '';
         // sign
-        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+        // ksort($params);
+        // $params['sign'] = strtoupper(md5(http_build_query($params)));
         
         // var_dump($params);
         return $this->request($requestMethod, self::QUERY_TOKEN_API, $params);

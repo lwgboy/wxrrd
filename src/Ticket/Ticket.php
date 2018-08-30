@@ -32,7 +32,8 @@ class Ticket extends Api
         // passed from Controller $params
         // options
         // sign
-        // $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+        // ksort($params);
+        // $params['sign'] = strtoupper(md5(http_build_query($params)));
 
         return $this->request($requestMethod, self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
@@ -46,16 +47,6 @@ class Ticket extends Api
      */
     public function paginate($params = [])
     {
-        access_token:71da7fb0579d69a10454954da2ec1603
-        appid:5755a21690a3cd0a
-        created_at_end:2018-08-28 23:59:59
-        created_at_start:2018-08-28 00:00:00
-        format:json
-        method:weiba.wxrrd.trade.lists
-        timestamp:2018-08-28 17:30:00
-        type:all
-        sign:CBA1F05DDE2514CB82733BB0EFF57165
-
         $requestMethod = "get";
 
         // constants
@@ -63,14 +54,16 @@ class Ticket extends Api
         $params['timestamp']    = Carbon::now()->toDateTimeString();
         $params['format']       = 'json';
         $params['type']         = 'all';
-        $params['created_at_start'] = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
-        $params['created_at_end']   = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
+        $params['created_at_start'] = $params['created_at_start'] ?? Carbon::yesterday()->toDateTimeString();
+        $params['created_at_end']   = $params['created_at_end'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
         // passed from Controller init
         $params['appid']        = $this->appId;
         // passed from Controller $params
+        // $params['access_token'] = '';
         // options
         // sign
-        $params['sign'] = strtolower(md5(http_build_query(ksort($params))));
+        ksort($params);
+        $params['sign'] = strtoupper(md5(http_build_query($params)));
 
         return $this->request($requestMethod, self::QUERY_TICKET_API, $params);
     }
