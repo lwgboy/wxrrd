@@ -17,11 +17,14 @@ class Api extends AbstractAPI
 
     protected $url;
 
-    public function __construct($appId, $appKey, $url)
+    protected $urlRed;
+
+    public function __construct($appId, $appKey, $url, $urlRed)
     {
-        $this->appId = $appId;
-        $this->url = $url;
+        $this->appId  = $appId;
         $this->appKey = $appKey;
+        $this->url    = $url;
+        $this->urlRed = $urlRed;
     }
 
     /**
@@ -32,20 +35,21 @@ class Api extends AbstractAPI
      * @return array
      * @throws HttpException
      */
-    public function request($path, $params = [])
+    public function request($requestMethod, $path, $params = [])
     {
         $params['appId'] = $this->appId;
 
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, [
-            "User-Agent: openApi",
-            "Content-Type: application/json; charset=utf-8",
-            "accept-encoding: gzip,deflate",
-            "time-stamp: ".time(),
-            "data-signature: ".strtoupper(md5($this->appKey.json_encode($params)))
-        ]);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        //     "User-Agent: openApi",
+        //     "Content-Type: application/json; charset=utf-8",
+        //     "accept-encoding: gzip,deflate",
+        //     "time-stamp: ".time(),
+        //     "data-signature: ".strtoupper(md5($this->appKey.json_encode($params)))
+        // ]);
+
         // 要访问的地址
         curl_setopt($curl, CURLOPT_URL, $this->url . $path);
         // 对认证证书来源的检查
@@ -80,8 +84,8 @@ class Api extends AbstractAPI
      */
     private function checkAndThrow($result)
     {
-        if ($result['status'] === 'error') {
-            throw new HttpException($result['messages'][0], $result['errorCode']);
+        if ($result['errCode']) {
+            throw new HttpException($result['errCode']);
         }
     }
 

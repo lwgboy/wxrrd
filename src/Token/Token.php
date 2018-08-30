@@ -19,7 +19,21 @@ class Token extends Api
      */
     public function paginate($params = [])
     {
-        return $this->request(self::QUERY_TOKEN_API, $params);
+        // appid:5755a21690a3cd0a
+        // secret:770195755a21690a3cd0a1e7ebac4064
+        // grant_type:authorization_code
+        // refresh_token:
+        // code:6fe3bfcbeab29793
+        // redirect_uri:http://www.ferraribabyhouse.com/wxrrd/
+        // format:
+        // state:
+        $requestMethod = "get";
+        
+        $params = array(
+            'grant_type' => 'authorization_code',
+            'refresh_token' => '',
+        );
+        return $this->request($requestMethod, self::QUERY_TOKEN_API, $params);
     }
 
 }

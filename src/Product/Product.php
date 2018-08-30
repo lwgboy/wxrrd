@@ -21,7 +21,9 @@ class Product extends Api
      */
     public function paginate($params = [])
     {
-        return $this->request(self::QUERY_PRODUCT_PAGES_API, $params);
+        $requestMethod = "get";
+        
+        return $this->request($requestMethod, self::QUERY_PRODUCT_PAGES_API, $params);
     }
 
 }

@@ -23,7 +23,9 @@ class Customer extends Api
      */
     public function queryByNum($customerNum)
     {
-        return $this->request(self::QUERY_BY_NUMBER_API, ['customerNum' => $customerNum]);
+        $requestMethod = "get";
+        
+        return $this->request($requestMethod, self::QUERY_BY_NUMBER_API, ['customerNum' => $customerNum]);
     }
 
     /**
@@ -34,7 +36,9 @@ class Customer extends Api
      */
     public function queryByUid($uid)
     {
-        return $this->request(self::QUERY_BY_UID_API, ['customerUid' => $uid]);
+        $requestMethod = "get";
+        
+        return $this->request($requestMethod, self::QUERY_BY_UID_API, ['customerUid' => $uid]);
     }
 
     /**
@@ -45,7 +49,9 @@ class Customer extends Api
      */
     public function paginate($params = [])
     {
-        return $this->request(self::QUERY_CUSTOMER_PAGES_API, $params);
+        $requestMethod = "get";
+        
+        return $this->request($requestMethod, self::QUERY_CUSTOMER_PAGES_API, $params);
     }
 
 }

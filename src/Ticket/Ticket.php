@@ -11,21 +11,13 @@ class Ticket extends Api
 {
 
     const QUERY_TICKET_API = '/router/rest';
+    const QUERY_METHOD_LISTS   = 'weiba.wxrrd.trade.lists';
+    const QUERY_METHOD_DETAILS = 'weiba.wxrrd.trade.details';
     
     const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryAllPayMethod';
     const QUERY_TICKET_BY_SN_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn';
     const QUERY_TICKET_PAGES_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketPages';
     
-    /**
-     * 查询支付方式代码
-     *
-     * @return array
-     */
-    public function allPayMethod()
-    {
-        return $this->request(self::QUERY_ALL_PAY_METHOD_API);
-    }
-
     /**
      * 根据单据序列号查询
      *
@@ -34,7 +26,8 @@ class Ticket extends Api
      */
     public function query($sn)
     {
-        return $this->request(self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
+        $requestMethod = "get";
+        return $this->request($requestMethod, self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
 
     /**
@@ -46,10 +39,11 @@ class Ticket extends Api
      */
     public function paginate($params = [])
     {
+        $requestMethod = "get";
         $params['startTime'] = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
         $params['endTime'] = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
 
-        return $this->request(self::QUERY_TICKET_PAGES_API, $params);
+        return $this->request($requestMethod, self::QUERY_TICKET_API, $params);
     }
 
     /**

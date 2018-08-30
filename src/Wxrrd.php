@@ -7,7 +7,7 @@ namespace Quanpan302\Wxrrd;
 use Quanpan302\Foundation\Foundation;
 
 /**
- * Class Pospal
+ * Class Wxrrd
  * @package Quanpan302\Wxrrd
  *
  * @property \Quanpan302\Wxrrd\Ticket\Token $token
@@ -15,7 +15,7 @@ use Quanpan302\Foundation\Foundation;
  * @property \Quanpan302\Wxrrd\Customer\Customer $customer
  * @property \Quanpan302\Wxrrd\Product\Product $product
  */
-class Pospal extends Foundation
+class Wxrrd extends Foundation
 {
 
     protected $providers = [
