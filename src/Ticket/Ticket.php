@@ -53,13 +53,13 @@ class Ticket extends Api
         $params['method']       = self::QUERY_METHOD_LISTS;
         $params['timestamp']    = Carbon::now()->toDateTimeString();
         $params['format']       = 'json';
-        $params['type']         = 'all';
-        $params['created_at_start'] = $params['created_at_start'] ?? Carbon::yesterday()->toDateTimeString();
-        $params['created_at_end']   = $params['created_at_end'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
         // passed from Controller init
         $params['appid']        = $this->appId;
+        $params['access_token'] = $this->appKey;
         // passed from Controller $params
-        // $params['access_token'] = '';
+        $params['type']             = $params['type'] ?? 'all';
+        $params['created_at_start'] = $params['created_at_start'] ?? Carbon::yesterday()->toDateTimeString();
+        $params['created_at_end']   = $params['created_at_end'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
         // options
         // sign
         ksort($params);

@@ -94,7 +94,7 @@ class Api extends AbstractAPI
     private function checkAndThrow($result)
     {
         if (array_key_exists('errCode', $result)) {
-            if (int($result['errCode']) > 0) {
+            if ((int)$result['errCode'] > 0) {
                 throw new HttpException($result['errCode']);
             }
         }
