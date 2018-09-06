@@ -35,7 +35,7 @@ class Api extends AbstractAPI
     public function request($requestMethod, $path, $params = [])
     {
         // ksort($params);
-        echo $this->url_build_query($params);
+        // echo $this->url_build_query($params);
 
         $curl = curl_init();
 

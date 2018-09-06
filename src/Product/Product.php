@@ -4,15 +4,16 @@
 namespace Quanpan302\Wxrrd\Product;
 
 
+use Carbon\Carbon;
 use Quanpan302\Wxrrd\Api;
 
 class Product extends Api
 {
 
     const QUERY_PRODUCT_API = '/router/rest';
+    const QUERY_METHOD_LISTS   = 'weiba.wxrrd.goods.lists';
+    const QUERY_METHOD_DETAILS = 'weiba.wxrrd.goods.details';
     
-    const QUERY_PRODUCT_PAGES_API = '/pospal-api2/openapi/v1/productOpenApi/queryProductPages';
-
     /**
      * 分页查询全部商品信息
      *
@@ -24,13 +25,18 @@ class Product extends Api
         $requestMethod = "get";
         
         // passed from Controller init
+        $params['method']       = self::QUERY_METHOD_LISTS;
+        $params['timestamp']    = Carbon::now()->toDateTimeString();
+        $params['format']       = 'json';
         // passed from Controller $params
+        $params['appid']        = $this->appId;
+        $params['secret']       = $this->appKey;
         // options
         // sign
-        // ksort($params);
-        // $params['sign'] = strtoupper(md5(http_build_query($params)));
+        ksort($params);
+        $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_PRODUCT_PAGES_API, $params);
+        return $this->request($requestMethod, self::QUERY_PRODUCT_API, $params);
     }
 
 }
