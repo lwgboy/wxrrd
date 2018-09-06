@@ -33,7 +33,7 @@ class Ticket extends Api
         // options
         // sign
         // ksort($params);
-        // $params['sign'] = strtoupper(md5(http_build_query($params)));
+        // $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
         return $this->request($requestMethod, self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
@@ -63,7 +63,7 @@ class Ticket extends Api
         // options
         // sign
         ksort($params);
-        $params['sign'] = strtoupper(md5(http_build_query($params)));
+        $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
         return $this->request($requestMethod, self::QUERY_TICKET_API, $params);
     }

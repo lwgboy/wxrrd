@@ -34,8 +34,9 @@ class Api extends AbstractAPI
      */
     public function request($requestMethod, $path, $params = [])
     {
-        ksort($params);
-        
+        // ksort($params);
+        echo $this->url_build_query($params);
+
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -50,7 +51,7 @@ class Api extends AbstractAPI
         // Get
         if($requestMethod === "get") {
             // 要访问的地址
-            curl_setopt($curl, CURLOPT_URL, $this->url . $path .'?'.http_build_query($params));
+            curl_setopt($curl, CURLOPT_URL, $this->url . $path .'?'.$this->url_build_query($params));
             // 对认证证书来源的检查
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             // 获取的信息以文件流的形式返回
@@ -95,7 +96,7 @@ class Api extends AbstractAPI
     {
         if (array_key_exists('errCode', $result)) {
             if ((int)$result['errCode'] > 0) {
-                throw new HttpException($result['errCode']);
+                // throw new HttpException($result['errCode']);
             }
         }
     }
@@ -107,5 +108,31 @@ class Api extends AbstractAPI
     {
     }
 
-
+    /**
+     * Build URL query params
+     * as http_build_query build a query url the difference is 
+     * that this function is array recursive and compatible with PHP4
+     *
+     * @param $query
+     * @param string $parent
+     * @return string
+     *
+     * @example
+     * $p = array('abbreviations' => array('google' => 'ggle', 'facebook' => array('abb_key' => 'fbook', 'fcbk')), 'key' => 'value');
+     * echo url_build_query($p);
+     */
+    public function url_build_query($query, $parent = null){
+        $query_array = array();
+        foreach($query as $key => $value){
+            // $_key = empty($parent) ?  urlencode($key) : $parent . '[' . urlencode($key) . ']';
+            $_key = empty($parent) ?  $key : $parent . '[' . $key . ']';
+            if(is_array($value)) {
+                $query_array[] = url_build_query($value, $_key);
+            } else {
+                // $query_array[] = $_key . '=' . urlencode($value);
+                $query_array[] = $_key . '=' . $value;
+            }
+        }
+        return implode('&', $query_array);
+    }
 }
