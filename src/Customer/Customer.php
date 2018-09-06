@@ -4,12 +4,15 @@
 namespace Quanpan302\Wxrrd\Customer;
 
 
+use Carbon\Carbon;
 use Quanpan302\Wxrrd\Api;
 
 class Customer extends Api
 {
 
     const QUERY_CUSTOMER_API = '/router/rest';
+    const QUERY_METHOD_LISTS   = 'weiba.wxrrd.user.lists';
+    const QUERY_METHOD_DETAILS = 'weiba.wxrrd.user.details';
     
     const QUERY_BY_NUMBER_API = '/pospal-api2/openapi/v1/customerOpenApi/queryByNumber';
     const QUERY_CUSTOMER_PAGES_API = '/pospal-api2/openapi/v1/customerOpenApi/queryCustomerPages';
@@ -66,13 +69,18 @@ class Customer extends Api
         $requestMethod = "get";
         
         // passed from Controller init
+        $params['method']       = self::QUERY_METHOD_LISTS;
+        $params['timestamp']    = Carbon::now()->toDateTimeString();
+        $params['format']       = 'json';
         // passed from Controller $params
+        $params['appid']        = $this->appId;
+        $params['secret']       = $this->appKey;
         // options
         // sign
-        // ksort($params);
-        // $params['sign'] = strtoupper(md5(http_build_query($params)));
+        ksort($params);
+        $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_CUSTOMER_PAGES_API, $params);
+        return $this->request($requestMethod, self::QUERY_CUSTOMER_API, $params);
     }
 
 }
