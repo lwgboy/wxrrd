@@ -10,7 +10,7 @@ use Quanpan302\Wxrrd\Api;
 class Customer extends Api
 {
 
-    const QUERY_CUSTOMER_API = '/router/rest';
+    const QUERY_API            = '/router/rest';
     const QUERY_METHOD_LISTS   = 'weiba.wxrrd.user.lists';
     const QUERY_METHOD_DETAILS = 'weiba.wxrrd.user.details';
     
@@ -35,7 +35,7 @@ class Customer extends Api
         // ksort($params);
         // $params['sign'] = strtoupper(md5(http_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_BY_NUMBER_API, ['customerNum' => $customerNum]);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
     /**
@@ -55,7 +55,7 @@ class Customer extends Api
         // ksort($params);
         // $params['sign'] = strtoupper(md5(http_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_BY_UID_API, ['customerUid' => $uid]);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
     /**
@@ -80,7 +80,7 @@ class Customer extends Api
         ksort($params);
         $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_CUSTOMER_API, $params);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
 }

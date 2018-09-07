@@ -10,7 +10,7 @@ use Quanpan302\Wxrrd\Api;
 class Ticket extends Api
 {
 
-    const QUERY_TICKET_API = '/router/rest';
+    const QUERY_API            = '/router/rest';
     const QUERY_METHOD_LISTS   = 'weiba.wxrrd.trade.lists';
     const QUERY_METHOD_DETAILS = 'weiba.wxrrd.trade.details';
     
@@ -35,7 +35,7 @@ class Ticket extends Api
         // ksort($params);
         // $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
     /**
@@ -65,7 +65,7 @@ class Ticket extends Api
         ksort($params);
         $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_TICKET_API, $params);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
     /**

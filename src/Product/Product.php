@@ -10,7 +10,7 @@ use Quanpan302\Wxrrd\Api;
 class Product extends Api
 {
 
-    const QUERY_PRODUCT_API = '/router/rest';
+    const QUERY_API            = '/router/rest';
     const QUERY_METHOD_LISTS   = 'weiba.wxrrd.goods.lists';
     const QUERY_METHOD_DETAILS = 'weiba.wxrrd.goods.details';
     
@@ -36,7 +36,7 @@ class Product extends Api
         ksort($params);
         $params['sign'] = strtoupper(md5($this->url_build_query($params)));
 
-        return $this->request($requestMethod, self::QUERY_PRODUCT_API, $params);
+        return $this->request($requestMethod, self::QUERY_API, $params);
     }
 
 }
